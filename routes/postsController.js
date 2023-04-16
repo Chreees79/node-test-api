@@ -1,11 +1,11 @@
 import express from "express";
 import { PostsModel } from "../models/postsModel.js";
-import { ObjectId } from "mongoose";
-export const router = express.Router();
+import { isValidObjectId } from "mongoose";
 
+export const router = express.Router();
 router.get("/", async (req, res) => {
   try {
-    const docs = await PostsModel.find().exec();
+    const docs = await PostsModel.find();
     console.log(docs);
     res.status(200).send(docs);
   } catch (error) {
@@ -30,6 +30,9 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  if(!isValidObjectId(req.params.id)) {
+    res.status(400).send(`ID unknown: ${req.params.id}`)
+  }
   try {
     const updatePost = {
       author: req.body.author,
@@ -39,6 +42,20 @@ router.put("/:id", async (req, res) => {
     res.status(200).send(updatePost);
   } catch (error) {
     console.log(error);
-    res.status(400).send(`ID is unknown: ${req.params.id}`);
+    res.status(500).send(`An error occured: ${error}`);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  if(!isValidObjectId(req.params.id)) {
+    res.status(400).send(`ID unknown: ${req.params.id}`)
+  }
+  try {
+    await PostsModel.findByIdAndRemove(req.params.id);
+    res.status(200).send("the post has been deleted successfully")
+  }
+  catch(error) {
+    console.log(error);
+    res.status(500).send(`An error occured: ${error}`)
   }
 });
