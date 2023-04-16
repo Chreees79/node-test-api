@@ -10,5 +10,5 @@ app.use("/posts", router);
 
 app.listen(5500, () => console.log("Server started: 5500"));
 setupDb(
-  "mongodb+srv://mongoDB:mongoDBChris@cluster0.ksxvseb.mongodb.net/node-test-api"
+    "mongodb+srv://mongoDB:mongoDBChris@cluster0.ksxvseb.mongodb.net/node-test-api"
 );
