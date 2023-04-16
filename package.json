@@ -7,7 +7,7 @@
     "lint": "eslint . --fix",
     "prettier": "prettier --write \"src/**/*.js\"",
     "start": "npm run lint && npm run prettier && nodemon index.js",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "prepare": "husky install"
   },
   "type": "module",
