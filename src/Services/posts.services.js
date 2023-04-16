@@ -27,9 +27,9 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const updateOnePost = async (req,res) => {
-  if(!isValidObjectId(req.params.id)) {
-    res.status(400).send(`ID unknown: ${req.params.id}`)
+export const updateOnePost = async (req, res) => {
+  if (!isValidObjectId(req.params.id)) {
+    res.status(400).send(`ID unknown: ${req.params.id}`);
   }
   try {
     const updatePost = {
@@ -45,15 +45,14 @@ export const updateOnePost = async (req,res) => {
 };
 
 export const deleteOnePost = async (req, res) => {
-  if(!isValidObjectId(req.params.id)) {
-    res.status(400).send(`ID unknown: ${req.params.id}`)
+  if (!isValidObjectId(req.params.id)) {
+    res.status(400).send(`ID unknown: ${req.params.id}`);
   }
   try {
     await PostsModel.findByIdAndRemove(req.params.id);
-    res.status(200).send("the post has been deleted successfully")
-  }
-  catch(error) {
+    res.status(200).send("the post has been deleted successfully");
+  } catch (error) {
     console.log(error);
-    res.status(500).send(`An error occured: ${error}`)
+    res.status(500).send(`An error occured: ${error}`);
   }
 };

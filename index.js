@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { setupDb } from "./config/dbConfig.js";
-import { router } from "./routes/postsController.js";
+import { setupDb } from "./src/config/dbConfig.js";
+import { router } from "./src/routes/postsController.js";
 
 const app = express();
 

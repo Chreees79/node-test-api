@@ -1,5 +1,10 @@
 import express from "express";
-import { createPost, deleteOnePost, getAllPosts, updateOnePost } from "../Services/posts.services.js";
+import {
+  createPost,
+  deleteOnePost,
+  getAllPosts,
+  updateOnePost,
+} from "../Services/posts.services.js";
 
 export const router = express.Router();
 
